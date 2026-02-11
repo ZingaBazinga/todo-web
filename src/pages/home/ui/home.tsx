@@ -1,6 +1,22 @@
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import styles from "./home.module.scss";
+import { taskApi } from "@/entities/task/api/api";
 
 export const Home = () => {
+    // Access the client
+    const queryClient = useQueryClient();
+
+    // Queries
+    const query = useQuery({ queryKey: ["todos"], queryFn: taskApi.getTasks });
+
+    // Mutations
+    const mutation = useMutation({
+        mutationFn: taskApi.createTask,
+        onSuccess: () => {
+            // Invalidate and refetch
+            queryClient.invalidateQueries({ queryKey: ["todos"] });
+        },
+    });
     return (
         <>
             <input
