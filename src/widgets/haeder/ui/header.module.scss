@@ -1,0 +1,9 @@
+.header {
+    text-align: center;
+    margin: 16px 0;
+    h1 {
+        font-size: var(--text-size-xl);
+        font-weight: var(--text-weight-bold);
+        color: var(--text-primary);
+    }
+}
